@@ -1,12 +1,10 @@
-import { ThemeProvider, Typography } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import { useState } from "react";
 import "./App.css";
 import CurrentWeatherContainer from "./components/CurrentWeatherContainer";
 import ErrorMessageContainer from "./components/ErrorMessageContainer";
-import LocationContainer from "./components/LocationContainer";
 import SearchBar from "./components/SearchBar";
-import TempContainer from "./components/TempContainer";
-import WeatherContainer from "./components/WeatherContainer";
+
 import { theme } from "./styles/styles";
 
 const api = {
