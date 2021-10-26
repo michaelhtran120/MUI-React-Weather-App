@@ -10,8 +10,8 @@ function CurrentWeatherContainer({ weather }) {
         country={weather.sys.country}
         location={weather.name}
       />
-      <TempContainer feels={Math.round(weather.main.feels_like)} />
-      <WeatherContainer weather={weather.weather[0].main} />
+      <TempContainer variant='h4' temp={weather.main} />
+      <WeatherContainer variant='h4' weather={weather.weather[0].main} />
     </>
   );
 }

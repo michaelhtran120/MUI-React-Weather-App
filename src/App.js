@@ -2,9 +2,12 @@ import { ThemeProvider } from "@material-ui/core";
 import { useState, useEffect, useRef } from "react";
 import CurrentWeatherContainer from "./components/CurrentWeatherContainer";
 import ErrorMessageContainer from "./components/ErrorMessageContainer";
+import ForecastContainer from "./components/ForecastContainer";
 import SearchBar from "./components/SearchBar";
 
 import { theme } from "./styles/styles";
+
+import { useStyles } from "./styles/styles";
 
 const api = {
   key: process.env.REACT_APP_WEATHER_API_KEY,
@@ -16,9 +19,10 @@ function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
   const [queryError, setQueryError] = useState("");
-  const [forecast, setForecast] = useState({});
+  const [forecast, setForecast] = useState([]);
 
   const isInitialMount = useRef(true);
+  const classes = useStyles();
 
   // Fetch data from OpenWeatherMap API and update weather state with response.
   const search = (e) => {
@@ -29,6 +33,7 @@ function App() {
           if (data.cod === "404") {
             throw data;
           } else {
+            console.log(data);
             setWeather(data);
             setQuery("");
             setQueryError("");
@@ -41,25 +46,26 @@ function App() {
     }
   };
 
-  const fetchForecast = () => {
-    fetch(
-      `${api.forecastBase}lat=${weather.coord.lat}&lon=${weather.coord.lon}&units=imperial&exclude=minutely&appid=${api.key}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setForecast(data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  //Prevent update on mount, which allows me to fetch forecast data after inital query of current weather.
+  //Prevent update on mount, which allows me to fetch forecast data after inital query of current weather. Only update if weather state changes.
   useEffect(() => {
+    //Function to retrieve forecast data.
+    const fetchForecast = () => {
+      fetch(
+        `${api.forecastBase}lat=${weather.coord.lat}&lon=${weather.coord.lon}&units=imperial&exclude=minutely&appid=${api.key}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.daily);
+          setForecast(data.daily);
+        })
+        .catch((error) => console.log(error));
+    };
+
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
       // If location invalid, do not run functions.
-      if (queryError !== "" || !weather) {
+      if (!weather) {
         return;
       } else {
         fetchForecast();
@@ -95,6 +101,17 @@ function App() {
           )}
           {queryError !== "" ? (
             <ErrorMessageContainer queryError={queryError} />
+          ) : (
+            <></>
+          )}
+          <br />
+          <br />
+          <br />
+          <br />
+          {typeof weather.main !== "undefined" && forecast ? (
+            <section className={classes.forecast}>
+              <ForecastContainer forecast={forecast.slice(1)} />
+            </section>
           ) : (
             <></>
           )}
