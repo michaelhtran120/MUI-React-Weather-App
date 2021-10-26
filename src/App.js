@@ -33,7 +33,6 @@ function App() {
           if (data.cod === "404") {
             throw data;
           } else {
-            console.log(data);
             setWeather(data);
             setQuery("");
             setQueryError("");
@@ -55,7 +54,6 @@ function App() {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.daily);
           setForecast(data.daily);
         })
         .catch((error) => console.log(error));
@@ -104,10 +102,6 @@ function App() {
           ) : (
             <></>
           )}
-          <br />
-          <br />
-          <br />
-          <br />
           {typeof weather.main !== "undefined" && forecast ? (
             <section className={classes.forecast}>
               <ForecastContainer forecast={forecast.slice(1)} />

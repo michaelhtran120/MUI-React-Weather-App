@@ -1,6 +1,8 @@
 # Material UI / React Weather App
 
-I wanted to create a weather app in order to practice my React skills and practice MUI
+## Learning Goal
+
+I wanted to create a weather app in order to practice my React skills and practice MUI.
 
 ## OpenWeatherMap API
 
@@ -14,8 +16,25 @@ The _One Call_ API call provides current weather and forecast data, but it does 
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Future Possible Changes
+
+1. Add a toggle functionality from imperial to metric
+2. Add graphics/illustration to display weather type. (e.g. Cloudy, Sunny, Rain etc...)
+3. Include additional data such as wind speed and humidity.
+4. Make create a new layout for better UX.
+5. Implement an hourly forecast
+
+## Review
+
+Material UI isn't as intuitive in some aspects. Customizing (CSS)certain components require a bit more digging around in order to achieve desired results.
+
+I had a tough time adjusting the <TextField> component, but was able to achieve the result I wanted.
+
+Handling API calls and deciphering the response data has gotten much easier since I first began coding/learning. I opted to use the fetch api over axios simply
+
+Utilized the fetch API as I am only getting data from OpenWeatherMap API.
+
+Still trying to determine the best way to organize my application into sub components. Since I didn't have that many states to manage, I maintain state in parent App component and passed state via props.

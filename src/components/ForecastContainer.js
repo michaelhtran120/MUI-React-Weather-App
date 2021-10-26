@@ -5,8 +5,6 @@ import WeatherContainer from "./WeatherContainer";
 import dateBuilder from "./Hooks/dateBuilder";
 
 function ForecastContainer({ forecast }) {
-  //   console.log(new Date(forecast[0].dt * 1000));
-  //   console.log(typeof new Date(forecast[0].dt * 1000));
   const classes = useStyles();
 
   return (
