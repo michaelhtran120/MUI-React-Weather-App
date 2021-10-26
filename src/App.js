@@ -1,6 +1,8 @@
 import { ThemeProvider, Typography } from "@material-ui/core";
 import { useState } from "react";
 import "./App.css";
+import CurrentWeatherContainer from "./components/CurrentWeatherContainer";
+import ErrorMessageContainer from "./components/ErrorMessageContainer";
 import LocationContainer from "./components/LocationContainer";
 import SearchBar from "./components/SearchBar";
 import TempContainer from "./components/TempContainer";
@@ -60,20 +62,13 @@ function App() {
           {/* Conditionally render data interface after API call. If no data found, render error msg */}
           {typeof weather.main !== "undefined" ? (
             <>
-              <LocationContainer
-                country={weather.sys.country}
-                location={weather.name}
-              />
-              <TempContainer feels={Math.round(weather.main.feels_like)} />
-              <WeatherContainer weather={weather.weather[0].main} />
+              <CurrentWeatherContainer weather={weather} />
             </>
           ) : (
             <></>
           )}
           {queryError !== "" ? (
-            <Typography variant='h4' color='primary' align='center'>
-              {queryError}
-            </Typography>
+            <ErrorMessageContainer queryError={queryError} />
           ) : (
             <></>
           )}
