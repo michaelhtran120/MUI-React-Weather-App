@@ -19,6 +19,7 @@ function SearchBar(props) {
           InputProps={{
             className: classes.input,
           }}
+          className={classes.input}
         />
       </Container>
     </Box>

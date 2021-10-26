@@ -1,11 +1,17 @@
 import { makeStyles, createTheme } from "@material-ui/core/styles";
 import { amber, blueGrey } from "@material-ui/core/colors";
-import { SportsRugbySharp } from "@material-ui/icons";
 
 export const useStyles = makeStyles({
   input: {
+    "& .MuiInput-underline:before": {
+      borderBottom: "2px solid white",
+    },
+    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+      borderBottom: "2px solid white",
+    },
     margin: "15px 0px",
     color: "white",
+    fontSize: "24px",
   },
   card: {
     minWidth: "200px",
