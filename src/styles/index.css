@@ -13,14 +13,14 @@ main {
 }
 
 .app {
-  background-image: url("./assets/warm.jpg");
+  background-image: url("../assets/warm.jpg");
   background-size: cover;
   background-position: bottom;
   transition: 0.4 ease-out;
 }
 
 .app.cold {
-  background-image: url("./assets/cold.jpg");
+  background-image: url("../assets/cold.jpg");
 }
 
 main {

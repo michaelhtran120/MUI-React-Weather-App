@@ -1,6 +1,5 @@
 import { ThemeProvider } from "@material-ui/core";
-import { useState } from "react";
-import "./App.css";
+import { useState, useEffect, useRef } from "react";
 import CurrentWeatherContainer from "./components/CurrentWeatherContainer";
 import ErrorMessageContainer from "./components/ErrorMessageContainer";
 import SearchBar from "./components/SearchBar";
@@ -10,12 +9,16 @@ import { theme } from "./styles/styles";
 const api = {
   key: process.env.REACT_APP_WEATHER_API_KEY,
   base: "http://api.openweathermap.org/data/2.5/",
+  forecastBase: "https://api.openweathermap.org/data/2.5/onecall?",
 };
 
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
   const [queryError, setQueryError] = useState("");
+  const [forecast, setForecast] = useState({});
+
+  const isInitialMount = useRef(true);
 
   // Fetch data from OpenWeatherMap API and update weather state with response.
   const search = (e) => {
@@ -24,20 +27,45 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           if (data.cod === "404") {
-            console.log("error");
-            console.log(data);
-            setQueryError(data.message);
-            setWeather("");
+            throw data;
           } else {
             setWeather(data);
             setQuery("");
             setQueryError("");
-            console.log(data);
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setQueryError(err.message.toUpperCase());
+          setWeather("");
+        });
     }
   };
+
+  const fetchForecast = () => {
+    fetch(
+      `${api.forecastBase}lat=${weather.coord.lat}&lon=${weather.coord.lon}&units=imperial&exclude=minutely&appid=${api.key}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setForecast(data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  //Prevent update on mount, which allows me to fetch forecast data after inital query of current weather.
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      // If location invalid, do not run functions.
+      if (queryError !== "" || !weather) {
+        return;
+      } else {
+        fetchForecast();
+      }
+    }
+  }, [weather]);
 
   return (
     <ThemeProvider theme={theme}>
