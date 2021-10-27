@@ -10,8 +10,8 @@ export const useStyles = makeStyles({
       borderBottom: "2px solid white",
     },
     margin: "15px 0px",
-    color: "white",
-    fontSize: "24px",
+    color: "white !important",
+    fontSize: "24px !important",
   },
   card: {
     minWidth: "200px",
