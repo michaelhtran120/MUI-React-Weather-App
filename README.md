@@ -37,4 +37,4 @@ Handling API calls and deciphering the response data has gotten much easier sinc
 
 Utilized the fetch API as I am only getting data from OpenWeatherMap API.
 
-Still trying to determine the best way to organize my application into sub components. Since I didn't have that many states to manage, I maintain state in parent App component and passed state via props.
+Still trying to determine the best way to organize my application into sub components. Since I didn't have that many states to manage, I maintain state in parent App component and passed state via props. Since state was being set via fetch() to store weather data, I did not see a need to utilize Redux or useReducer to manage state.
