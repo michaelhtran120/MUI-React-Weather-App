@@ -1,0 +1,2 @@
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Nunito",sans-serif}main{min-height:100vh}.app{background-image:url(/MUI-React-Weather-App/static/media/warm.1fb4c94f.jpg);background-size:cover;background-position:bottom;transition:.4 ease-out}.app.cold{background-image:url(/MUI-React-Weather-App/static/media/cold.2a36c908.jpg)}main{background-image:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.8));padding-bottom:20px}section{margin-top:50px}
+/*# sourceMappingURL=main.538731e8.chunk.css.map */

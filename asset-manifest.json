@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/MUI-React-Weather-App/static/css/main.54dca9bd.chunk.css",
-    "main.js": "/MUI-React-Weather-App/static/js/main.71226d9c.chunk.js",
-    "main.js.map": "/MUI-React-Weather-App/static/js/main.71226d9c.chunk.js.map",
-    "runtime-main.js": "/MUI-React-Weather-App/static/js/runtime-main.73fa87d0.js",
-    "runtime-main.js.map": "/MUI-React-Weather-App/static/js/runtime-main.73fa87d0.js.map",
-    "static/js/2.48ad9ad2.chunk.js": "/MUI-React-Weather-App/static/js/2.48ad9ad2.chunk.js",
-    "static/js/2.48ad9ad2.chunk.js.map": "/MUI-React-Weather-App/static/js/2.48ad9ad2.chunk.js.map",
-    "static/js/3.28dd811b.chunk.js": "/MUI-React-Weather-App/static/js/3.28dd811b.chunk.js",
-    "static/js/3.28dd811b.chunk.js.map": "/MUI-React-Weather-App/static/js/3.28dd811b.chunk.js.map",
+    "main.css": "/MUI-React-Weather-App/static/css/main.538731e8.chunk.css",
+    "main.js": "/MUI-React-Weather-App/static/js/main.76bc7757.chunk.js",
+    "main.js.map": "/MUI-React-Weather-App/static/js/main.76bc7757.chunk.js.map",
+    "runtime-main.js": "/MUI-React-Weather-App/static/js/runtime-main.5a44fe81.js",
+    "runtime-main.js.map": "/MUI-React-Weather-App/static/js/runtime-main.5a44fe81.js.map",
+    "static/js/2.757a7f2c.chunk.js": "/MUI-React-Weather-App/static/js/2.757a7f2c.chunk.js",
+    "static/js/2.757a7f2c.chunk.js.map": "/MUI-React-Weather-App/static/js/2.757a7f2c.chunk.js.map",
+    "static/js/3.a2c027cd.chunk.js": "/MUI-React-Weather-App/static/js/3.a2c027cd.chunk.js",
+    "static/js/3.a2c027cd.chunk.js.map": "/MUI-React-Weather-App/static/js/3.a2c027cd.chunk.js.map",
     "index.html": "/MUI-React-Weather-App/index.html",
-    "static/css/main.54dca9bd.chunk.css.map": "/MUI-React-Weather-App/static/css/main.54dca9bd.chunk.css.map",
-    "static/js/2.48ad9ad2.chunk.js.LICENSE.txt": "/MUI-React-Weather-App/static/js/2.48ad9ad2.chunk.js.LICENSE.txt",
+    "static/css/main.538731e8.chunk.css.map": "/MUI-React-Weather-App/static/css/main.538731e8.chunk.css.map",
+    "static/js/2.757a7f2c.chunk.js.LICENSE.txt": "/MUI-React-Weather-App/static/js/2.757a7f2c.chunk.js.LICENSE.txt",
     "static/media/index.css": "/MUI-React-Weather-App/static/media/warm.1fb4c94f.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.73fa87d0.js",
-    "static/js/2.48ad9ad2.chunk.js",
-    "static/css/main.54dca9bd.chunk.css",
-    "static/js/main.71226d9c.chunk.js"
+    "static/js/runtime-main.5a44fe81.js",
+    "static/js/2.757a7f2c.chunk.js",
+    "static/css/main.538731e8.chunk.css",
+    "static/js/main.76bc7757.chunk.js"
   ]
 }
