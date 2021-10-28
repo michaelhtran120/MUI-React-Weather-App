@@ -19,9 +19,10 @@ function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
   const [queryError, setQueryError] = useState("");
-  const [forecast, setForecast] = useState([]);
+  const [dailyForecast, setDailyForecast] = useState([]);
+  const [hourlyForecast, setHourlyForecast] = useState([]);
+  const [dailyActive, setDailyActive] = useState(true);
 
-  const isInitialMount = useRef(true);
   const classes = useStyles();
 
   // Fetch data from OpenWeatherMap API and update weather state with response.
@@ -36,6 +37,7 @@ function App() {
             setWeather(data);
             setQuery("");
             setQueryError("");
+            setDailyActive(true);
           }
         })
         .catch((err) => {
@@ -46,6 +48,8 @@ function App() {
   };
 
   //Prevent update on mount, which allows me to fetch forecast data after inital query of current weather. Only update if weather state changes.
+  const isInitialMount = useRef(true);
+
   useEffect(() => {
     //Function to retrieve forecast data.
     const fetchForecast = () => {
@@ -54,7 +58,8 @@ function App() {
       )
         .then((response) => response.json())
         .then((data) => {
-          setForecast(data.daily);
+          setDailyForecast(data.daily);
+          setHourlyForecast(data.hourly);
         })
         .catch((error) => console.log(error));
     };
@@ -70,6 +75,13 @@ function App() {
       }
     }
   }, [weather]);
+
+  const toggleDaily = () => {
+    setDailyActive(true);
+  };
+  const toggleHourly = () => {
+    setDailyActive(false);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -97,14 +109,26 @@ function App() {
           ) : (
             <></>
           )}
+          {/* If query is incorrect, render error message */}
           {queryError !== "" ? (
             <ErrorMessageContainer queryError={queryError} />
           ) : (
             <></>
           )}
-          {typeof weather.main !== "undefined" && forecast ? (
+          {/* Only render forecast data if query is correct and data is retrieved for current weather info */}
+          {typeof weather.main !== "undefined" && dailyForecast ? (
             <section className={classes.forecast}>
-              <ForecastContainer forecast={forecast.slice(1)} />
+              <ForecastContainer
+                weather={weather}
+                toggleDaily={toggleDaily}
+                toggleHourly={toggleHourly}
+                dailyActive={dailyActive}
+                forecast={
+                  dailyActive
+                    ? dailyForecast.slice(1)
+                    : hourlyForecast.slice(1, 13)
+                }
+              />
             </section>
           ) : (
             <></>

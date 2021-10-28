@@ -1,38 +1,38 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Box, Button, ButtonGroup, Container } from "@material-ui/core";
 import React from "react";
-import { useStyles } from "../styles/styles";
-import WeatherContainer from "./WeatherContainer";
-import dateBuilder from "./Hooks/dateBuilder";
+import DailyForecastDisplay from "./DailyForecastDisplay";
+import { v4 as uuidv4 } from "uuid";
+import HourlyForecastDisplay from "./HourlyForecastDisplay";
 
-function ForecastContainer({ forecast }) {
-  const classes = useStyles();
-
+function ForecastContainer({
+  weather,
+  toggleDaily,
+  toggleHourly,
+  dailyActive,
+  forecast,
+}) {
   return (
-    // <Grid
-    //   container
-    //   spacing={1}
-    //   direction='row'
-    //   justifyContent='center'
-    //   columns={7}
-    // >
-    <Container>
+    <Container sx={{ marginBottom: 100 }}>
       <Box
         sx={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}
       >
-        <Button variant='outlined' color='primary'>
-          Daily
-        </Button>
-        <Button variant='outlined' color='primary'>
-          Hourly
-        </Button>
+        {/* Button Container to toggle between daily and hourly forecast */}
+        <ButtonGroup>
+          <Button
+            variant={dailyActive ? "contained" : "outlined"}
+            color={dailyActive ? "secondary" : "primary"}
+            onClick={toggleDaily}
+          >
+            Daily
+          </Button>
+          <Button
+            variant={dailyActive ? "outlined" : "contained"}
+            color={dailyActive ? "primary" : "secondary"}
+            onClick={toggleHourly}
+          >
+            Hourly
+          </Button>
+        </ButtonGroup>
       </Box>
 
       <Box
@@ -42,38 +42,28 @@ function ForecastContainer({ forecast }) {
           overflowX: "scroll",
           maxWidth: "90%",
           margin: "0 auto",
+          gap: 6,
         }}
       >
-        {forecast.map((day) => {
-          let date = dateBuilder(new Date(day.dt * 1000));
-          return (
-            <Card variant='outlined' className={classes.card}>
-              <CardContent>
-                <Typography variant='h6' align='center' color='secondary'>
-                  {date}
-                </Typography>
-                <br />
-                <Typography
-                  variant='h6'
-                  component='p'
-                  align='center'
-                  color='primary'
-                >
-                  High: {Math.round(day.temp.max)}°F
-                </Typography>
-                <Typography
-                  variant='h6'
-                  component='p'
-                  align='center'
-                  color='primary'
-                >
-                  Low: {Math.round(day.temp.min)}°F
-                </Typography>
-                <WeatherContainer variant='h6' weather={day.weather[0].main} />
-              </CardContent>
-            </Card>
-          );
-        })}
+        {dailyActive
+          ? forecast.map((dayData) => {
+              return (
+                <DailyForecastDisplay
+                  weather={weather}
+                  key={uuidv4()}
+                  day={dayData}
+                />
+              );
+            })
+          : forecast.map((hourData) => {
+              return (
+                <HourlyForecastDisplay
+                  weather={weather}
+                  key={uuidv4()}
+                  hourData={hourData}
+                />
+              );
+            })}
       </Box>
     </Container>
   );

@@ -13,7 +13,13 @@ export const useStyles = makeStyles({
     color: "white !important",
     fontSize: "24px !important",
   },
-  card: {
+  cardWarm: {
+    minWidth: "200px",
+    width: "200px",
+    backgroundColor: "rgba(255,255,255, 0.1)",
+    color: "white",
+  },
+  cardCold: {
     minWidth: "200px",
     width: "200px",
     backgroundColor: "rgba(0,0,0, 0.3)",
