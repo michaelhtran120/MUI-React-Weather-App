@@ -1,4 +1,12 @@
-import { Card, CardContent, Grid, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import React from "react";
 import { useStyles } from "../styles/styles";
 import WeatherContainer from "./WeatherContainer";
@@ -8,17 +16,37 @@ function ForecastContainer({ forecast }) {
   const classes = useStyles();
 
   return (
-    <Grid
-      sx={{ width: "100%" }}
-      container
-      spacing={1}
-      justifyContent='center'
-      columns={7}
-    >
-      {forecast.map((day) => {
-        let date = dateBuilder(new Date(day.dt * 1000));
-        return (
-          <Grid item xs={9} sm={4} md={4} lg={3}>
+    // <Grid
+    //   container
+    //   spacing={1}
+    //   direction='row'
+    //   justifyContent='center'
+    //   columns={7}
+    // >
+    <Container>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}
+      >
+        <Button variant='outlined' color='primary'>
+          Daily
+        </Button>
+        <Button variant='outlined' color='primary'>
+          Hourly
+        </Button>
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          overflow: "hidden",
+          overflowX: "scroll",
+          maxWidth: "90%",
+          margin: "0 auto",
+        }}
+      >
+        {forecast.map((day) => {
+          let date = dateBuilder(new Date(day.dt * 1000));
+          return (
             <Card variant='outlined' className={classes.card}>
               <CardContent>
                 <Typography variant='h6' align='center' color='secondary'>
@@ -44,10 +72,10 @@ function ForecastContainer({ forecast }) {
                 <WeatherContainer variant='h6' weather={day.weather[0].main} />
               </CardContent>
             </Card>
-          </Grid>
-        );
-      })}
-    </Grid>
+          );
+        })}
+      </Box>
+    </Container>
   );
 }
 

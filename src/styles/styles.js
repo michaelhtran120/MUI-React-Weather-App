@@ -15,6 +15,7 @@ export const useStyles = makeStyles({
   },
   card: {
     minWidth: "200px",
+    width: "200px",
     backgroundColor: "rgba(0,0,0, 0.3)",
     color: "white",
   },
