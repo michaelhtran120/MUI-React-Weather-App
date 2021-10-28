@@ -32,8 +32,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 1. Add a toggle functionality from imperial to metric
 2. Add graphics/illustration to display weather type. (e.g. Cloudy, Sunny, Rain etc...)
 3. Include additional data such as wind speed and humidity.
-4. Make create a new layout for better UX.
-5. Implement an hourly forecast
+4. Make create a new layout for better UX. (Completed 10/28)
+5. Implement an hourly forecast (Completed 10/28)
 
 ## Review
 
