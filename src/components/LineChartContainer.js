@@ -1,4 +1,4 @@
-import { Container } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
 import React from "react";
 import DailyLineChart from "./DailyLineChart";
 import HourlyLineChart from "./HourlyLineChart";
@@ -88,21 +88,23 @@ function LineChartContainer({ dailyActive, forecast }) {
   }
 
   return (
-    <Container>
-      {dailyActive ? (
-        <DailyLineChart
-          chartData={chartData}
-          xAxisLabel={xAxisLabel}
-          maxTempValue={maxTempValue}
-        />
-      ) : (
-        <HourlyLineChart
-          chartData={chartData}
-          xAxisLabel={xAxisLabel}
-          maxTempValue={maxTempValue}
-        />
-      )}
-    </Container>
+    <Box sx={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
+      <Container>
+        {dailyActive ? (
+          <DailyLineChart
+            chartData={chartData}
+            xAxisLabel={xAxisLabel}
+            maxTempValue={maxTempValue}
+          />
+        ) : (
+          <HourlyLineChart
+            chartData={chartData}
+            xAxisLabel={xAxisLabel}
+            maxTempValue={maxTempValue}
+          />
+        )}
+      </Container>
+    </Box>
   );
 }
 
