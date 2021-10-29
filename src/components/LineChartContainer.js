@@ -88,7 +88,7 @@ function LineChartContainer({ dailyActive, forecast }) {
   }
 
   return (
-    <Box sx={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
+    <Box sx={{ backgroundColor: "rgba(0,0,0,0.5)", padding: "40px 0" }}>
       <Container>
         {dailyActive ? (
           <DailyLineChart
