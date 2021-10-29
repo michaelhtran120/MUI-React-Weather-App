@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import CurrentWeatherContainer from "./components/CurrentWeatherContainer";
 import ErrorMessageContainer from "./components/ErrorMessageContainer";
 import ForecastContainer from "./components/ForecastContainer";
+import LineChartContainer from "./components/LineChartContainer";
 import SearchBar from "./components/SearchBar";
 
 import { theme } from "./styles/styles";
@@ -58,6 +59,7 @@ function App() {
       )
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           setDailyForecast(data.daily);
           setHourlyForecast(data.hourly);
         })
@@ -115,21 +117,36 @@ function App() {
           ) : (
             <></>
           )}
+
           {/* Only render forecast data if query is correct and data is retrieved for current weather info */}
           {typeof weather.main !== "undefined" && dailyForecast ? (
-            <section className={classes.forecast}>
-              <ForecastContainer
-                weather={weather}
-                toggleDaily={toggleDaily}
-                toggleHourly={toggleHourly}
-                dailyActive={dailyActive}
-                forecast={
-                  dailyActive
-                    ? dailyForecast.slice(1)
-                    : hourlyForecast.slice(1, 13)
-                }
-              />
-            </section>
+            <>
+              <section className={classes.forecast}>
+                <ForecastContainer
+                  weather={weather}
+                  toggleDaily={toggleDaily}
+                  toggleHourly={toggleHourly}
+                  dailyActive={dailyActive}
+                  // Pass daily or hourly forecast data depending on, which data is being requested (dailyActive state)
+                  forecast={
+                    dailyActive
+                      ? dailyForecast.slice(1)
+                      : hourlyForecast.slice(1, 13)
+                  }
+                />
+              </section>
+              <section>
+                <LineChartContainer
+                  dailyActive={dailyActive}
+                  // Pass daily or hourly forecast data depending on, which data is being requested (dailyActive state)
+                  forecast={
+                    dailyActive
+                      ? dailyForecast.slice(1)
+                      : hourlyForecast.slice(1, 13)
+                  }
+                />
+              </section>
+            </>
           ) : (
             <></>
           )}

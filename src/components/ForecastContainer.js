@@ -35,6 +35,7 @@ function ForecastContainer({
         </ButtonGroup>
       </Box>
 
+      {/* Create a flexbox container and hid overflow to make horizontal scroll - Makes this more mobile friendly w/ less vertical scroll */}
       <Box
         sx={{
           display: "flex",
@@ -45,6 +46,7 @@ function ForecastContainer({
           gap: 6,
         }}
       >
+        {/* Either render hourly display or daily display depending on dailyActive state */}
         {dailyActive
           ? forecast.map((dayData) => {
               return (

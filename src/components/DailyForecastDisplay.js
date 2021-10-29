@@ -11,6 +11,7 @@ function DailyForecastDisplay({ weather, day }) {
   return (
     <Card
       variant='outlined'
+      // conditionally render different card background depending on main background.
       className={weather.main.temp > "70" ? classes.cardWarm : classes.cardCold}
     >
       <CardContent>
