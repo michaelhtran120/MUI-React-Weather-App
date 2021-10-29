@@ -59,7 +59,6 @@ function App() {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setDailyForecast(data.daily);
           setHourlyForecast(data.hourly);
         })
@@ -140,9 +139,7 @@ function App() {
                   dailyActive={dailyActive}
                   // Pass daily or hourly forecast data depending on, which data is being requested (dailyActive state)
                   forecast={
-                    dailyActive
-                      ? dailyForecast.slice(1)
-                      : hourlyForecast.slice(1, 13)
+                    dailyActive ? dailyForecast : hourlyForecast.slice(0, 13)
                   }
                 />
               </section>
