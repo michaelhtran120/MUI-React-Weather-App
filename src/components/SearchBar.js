@@ -13,6 +13,7 @@ function SearchBar(props) {
           placeholder='Search...'
           fullWidth
           color='secondary'
+          placeholder='Enter Location...'
           onChange={props.onChange}
           value={props.value}
           onKeyPress={props.keyPress}

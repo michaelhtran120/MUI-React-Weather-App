@@ -27,6 +27,15 @@ function App() {
   const classes = useStyles();
 
   // Fetch data from OpenWeatherMap API and update weather state with response.
+  //
+  //
+  //
+  //
+  // Blank query crashes application - MUST FIX
+  //
+  //
+  //
+
   const search = (e) => {
     if (e.key === "Enter") {
       fetch(`${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`)
