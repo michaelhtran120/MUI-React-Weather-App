@@ -14,10 +14,11 @@ function SearchBar({ handleSearch, onChange, value }) {
                     type='text'
                     fullWidth
                     color='secondary'
-                    placeholder='Enter Location...'
+                    placeholder='  Enter Location...'
                     onChange={onChange}
                     value={value}
                     onKeyPress={handleSearch}
+                    className={classes.input}
                     InputProps={{
                         className: classes.input,
                         endAdornment: (
@@ -28,7 +29,6 @@ function SearchBar({ handleSearch, onChange, value }) {
                             </InputAdornment>
                         ),
                     }}
-                    className={classes.input}
                 />
             </Container>
         </Box>

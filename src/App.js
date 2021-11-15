@@ -5,7 +5,7 @@ import ErrorMessageContainer from "./components/ErrorMessageContainer";
 import ForecastContainer from "./components/ForecastContainer";
 import LineChartContainer from "./components/LineChartContainer";
 import SearchBar from "./components/SearchBar";
-import { fetchWeatherData } from "./components/Hooks/fetchWeather";
+import { fetchWeatherData, fetchForecastData } from "./components/Hooks/fetchWeather";
 
 import { theme } from "./styles/styles";
 
@@ -28,13 +28,7 @@ function App() {
     const classes = useStyles();
 
     // Fetch data from OpenWeatherMap API and update weather state with response.
-    //
-    //
-    //
-    //
-
     const search = async (e) => {
-        console.log(e);
         if (e.key === "Enter" || e.type === "click") {
             if (query === "" && Object.keys(weather).length === 0) {
                 setQueryError("Please enter a location!");
@@ -42,7 +36,7 @@ function App() {
                 return;
             } else {
                 try {
-                    const data = await fetchWeatherData(api.base, query, api.key);
+                    const data = await fetchWeatherData(query);
                     if (data.cod === "404") {
                         throw data;
                     } else {
@@ -64,25 +58,23 @@ function App() {
     const isInitialMount = useRef(true);
 
     useEffect(() => {
-        //Function to retrieve forecast data.
-        const fetchForecast = () => {
-            fetch(`${api.forecastBase}lat=${weather.coord.lat}&lon=${weather.coord.lon}&units=imperial&exclude=minutely&appid=${api.key}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    setDailyForecast(data.daily);
-                    setHourlyForecast(data.hourly);
-                })
-                .catch((error) => console.log(error));
-        };
-
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
             // If location invalid, do not run functions.
-            if (!weather) {
+            if (Object.keys(weather).length === 0) {
                 return;
             } else {
-                fetchForecast();
+                // fetchForecast();
+                (async () => {
+                    const data = await fetchForecastData(weather.coord.lat, weather.coord.lon);
+                    try {
+                        setDailyForecast(data.daily);
+                        setHourlyForecast(data.hourly);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                })();
             }
         }
     }, [weather]);
