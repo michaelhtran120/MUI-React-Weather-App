@@ -5,7 +5,7 @@ import ErrorMessageContainer from "./components/ErrorMessageContainer";
 import ForecastContainer from "./components/ForecastContainer";
 import LineChartContainer from "./components/LineChartContainer";
 import SearchBar from "./components/SearchBar";
-import fetchWeatherData from "./components/Hooks/fetchWeather";
+import { fetchWeatherData } from "./components/Hooks/fetchWeather";
 
 import { theme } from "./styles/styles";
 
@@ -34,7 +34,8 @@ function App() {
     //
 
     const search = async (e) => {
-        if (e.key === "Enter") {
+        console.log(e);
+        if (e.key === "Enter" || e.type === "click") {
             if (query === "" && Object.keys(weather).length === 0) {
                 setQueryError("Please enter a location!");
             } else if (query === "" && weather) {
@@ -42,7 +43,6 @@ function App() {
             } else {
                 try {
                     const data = await fetchWeatherData(api.base, query, api.key);
-                    console.log(data);
                     if (data.cod === "404") {
                         throw data;
                     } else {
@@ -101,7 +101,7 @@ function App() {
                 className={typeof weather.main !== "undefined" ? (weather.main.temp > "70" ? "app" : "app cold") : "app"}
             >
                 <main>
-                    <SearchBar keyPress={search} value={query} onChange={(e) => setQuery(e.target.value)} />
+                    <SearchBar handleSearch={search} value={query} onChange={(e) => setQuery(e.target.value)} />
                     {/* Conditionally render data interface after API call. If no data found, render error msg */}
                     {typeof weather.main !== "undefined" ? (
                         <>
