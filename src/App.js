@@ -11,12 +11,6 @@ import { theme } from "./styles/styles";
 
 import { useStyles } from "./styles/styles";
 
-const api = {
-    key: process.env.REACT_APP_WEATHER_API_KEY,
-    base: "https://api.openweathermap.org/data/2.5/",
-    forecastBase: "https://api.openweathermap.org/data/2.5/onecall?",
-};
-
 function App() {
     const [query, setQuery] = useState("");
     const [weather, setWeather] = useState({});

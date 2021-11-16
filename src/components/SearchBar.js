@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Container, TextField, InputAdornment } from "@material-ui/core";
+import { Box, Container, TextField, InputAdornment } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import { useStyles } from "../styles/styles";
@@ -22,8 +22,8 @@ function SearchBar({ handleSearch, onChange, value }) {
                     InputProps={{
                         className: classes.input,
                         endAdornment: (
-                            <InputAdornment>
-                                <IconButton style={{ backgroundColor: "transparent" }} disableRipple='true' color='secondary' onClick={handleSearch}>
+                            <InputAdornment position='end'>
+                                <IconButton style={{ backgroundColor: "transparent" }} disableRipple={true} color='secondary' onClick={handleSearch}>
                                     <SearchIcon fontSize='large' />
                                 </IconButton>
                             </InputAdornment>
